@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BidIndia - Online Auction Platform</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  /* Background color tokens (Light Mode) */
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  /* Common style patterns */
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+  --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+  /* RGB versions for opacity control */
+  --color-success-rgb: 33, 128, 141;
+  --color-error-rgb: 192, 21, 47;
+  --color-warning-rgb: 168, 75, 47;
+  --color-info-rgb: 98, 108, 113;
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+
+  /* Custom Platform Colors */
+  --color-gold: #d4a574;
+  --color-gold-hover: #c89860;
+  --color-blue-primary: #2d5f7f;
+  --color-blue-hover: #244d66;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(190, 24, 93, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+    --color-success-rgb: var(--color-teal-300-rgb);
+    --color-error-rgb: var(--color-red-400-rgb);
+    --color-warning-rgb: var(--color-orange-400-rgb);
+    --color-info-rgb: var(--color-gray-300-rgb);
+  }
+
+  select.form-control {
+    background-image: var(--select-caret-dark);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+    format('woff2');
+}
+
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Custom Styles for Auction Platform */
+
+.header {
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--color-card-border);
+}
+
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-24);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-24);
+}
+
+.logo {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+}
+
+.nav {
+    display: flex;
+    gap: var(--space-24);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--duration-fast);
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+}
+
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+.location-selector {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+}
+
+.location-selector select {
+    padding: var(--space-8) var(--space-32) var(--space-8) var(--space-12);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    appearance: none;
+    background-image: var(--select-caret-light);
+    background-repeat: no-repeat;
+    background-position: right var(--space-12) center;
+    background-size: 16px;
+}
+
+.user-actions {
+    display: flex;
+    gap: var(--space-12);
+}
+
+.btn {
+    padding: var(--space-8) var(--space-16);
+    border-radius: var(--radius-base);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    border: none;
+    transition: all var(--duration-fast);
+    font-size: var(--font-size-base);
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-btn-primary-text);
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background: var(--color-secondary);
+    color: var(--color-text);
+}
+
+.btn-secondary:hover {
+    background: var(--color-secondary-hover);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+.btn-outline:hover {
+    background: var(--color-secondary);
+}
+
+.btn-gold {
+    background: var(--color-gold);
+    color: var(--color-white);
+}
+
+.btn-gold:hover {
+    background: var(--color-gold-hover);
+}
+
+.section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--space-32) var(--space-24);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hero {
+    background: var(--color-bg-1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-32) var(--space-24);
+    text-align: center;
+    margin-bottom: var(--space-32);
+}
+
+.hero h1 {
+    font-size: var(--font-size-4xl);
+    margin: 0 0 var(--space-16) 0;
+    color: var(--color-text);
+}
+
+.hero p {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-24);
+    margin-bottom: var(--space-32);
+}
+
+.stat-card {
+    background: var(--color-surface);
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-card-border);
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: var(--font-size-3xl);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-8) 0;
+}
+
+.stat-card p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    font-size: var(--font-size-base);
+}
+
+.category-tabs {
+    display: flex;
+    gap: var(--space-12);
+    margin-bottom: var(--space-24);
+    overflow-x: auto;
+    padding-bottom: var(--space-8);
+}
+
+.category-tab {
+    padding: var(--space-8) var(--space-16);
+    border-radius: var(--radius-full);
+    background: var(--color-secondary);
+    color: var(--color-text);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--duration-fast);
+    border: 1px solid transparent;
+}
+
+.category-tab:hover {
+    background: var(--color-secondary-hover);
+}
+
+.category-tab.active {
+    background: var(--color-primary);
+    color: var(--color-btn-primary-text);
+}
+
+.auction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-24);
+}
+
+.auction-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--duration-normal);
+    box-shadow: var(--shadow-sm);
+}
+
+.auction-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.auction-image {
+    width: 100%;
+    height: 200px;
+    background: var(--color-bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    position: relative;
+}
+
+.auction-badge {
+    position: absolute;
+    top: var(--space-12);
+    right: var(--space-12);
+    padding: var(--space-4) var(--space-12);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+}
+
+.badge-hot {
+    background: var(--color-error);
+    color: var(--color-white);
+}
+
+.badge-ending {
+    background: var(--color-warning);
+    color: var(--color-white);
+}
+
+.auction-content {
+    padding: var(--space-16);
+}
+
+.auction-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin: 0 0 var(--space-8) 0;
+    color: var(--color-text);
+}
+
+.auction-location {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-12);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.auction-price {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-8);
+}
+
+.auction-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-12);
+}
+
+.auction-shipping {
+    font-size: var(--font-size-xs);
+    color: var(--color-success);
+    background: var(--color-bg-3);
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+}
+
+.filters {
+    background: var(--color-surface);
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-card-border);
+    margin-bottom: var(--space-24);
+}
+
+.filters h3 {
+    margin: 0 0 var(--space-16) 0;
+    font-size: var(--font-size-xl);
+}
+
+.filter-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-16);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.form-group label {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: var(--space-8) var(--space-12);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: var(--focus-outline);
+    border-color: var(--color-primary);
+}
+
+.form-group select {
+    appearance: none;
+    background-image: var(--select-caret-light);
+    background-repeat: no-repeat;
+    background-position: right var(--space-12) center;
+    background-size: 16px;
+    padding-right: var(--space-32);
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-card-border);
+    overflow: hidden;
+}
+
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: var(--space-16);
+    text-align: left;
+    border-bottom: 1px solid var(--color-card-border-inner);
+}
+
+.table th {
+    background: var(--color-bg-1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-4) var(--space-12);
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+}
+
+.status--success {
+    background-color: rgba(var(--color-success-rgb), var(--status-bg-opacity));
+    color: var(--color-success);
+    border: 1px solid rgba(var(--color-success-rgb), var(--status-border-opacity));
+}
+
+.status--error {
+    background-color: rgba(var(--color-error-rgb), var(--status-bg-opacity));
+    color: var(--color-error);
+    border: 1px solid rgba(var(--color-error-rgb), var(--status-border-opacity));
+}
+
+.status--warning {
+    background-color: rgba(var(--color-warning-rgb), var(--status-bg-opacity));
+    color: var(--color-warning);
+    border: 1px solid rgba(var(--color-warning-rgb), var(--status-border-opacity));
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: var(--space-16);
+}
+
+.modal-content {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    padding: var(--space-24);
+    border-bottom: 1px solid var(--color-card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: var(--font-size-3xl);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: var(--color-text);
+}
+
+.modal-body {
+    padding: var(--space-24);
+}
+
+.alert {
+    position: fixed;
+    top: var(--space-24);
+    right: var(--space-24);
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-16) var(--space-20);
+    box-shadow: var(--shadow-lg);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    min-width: 300px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.alert-success {
+    border-left: 4px solid var(--color-success);
+}
+
+.alert-error {
+    border-left: 4px solid var(--color-error);
+}
+
+.detail-container {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--space-32);
+}
+
+.detail-main {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.detail-image {
+    width: 100%;
+    height: 400px;
+    background: var(--color-bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+}
+
+.detail-info {
+    padding: var(--space-24);
+}
+
+.detail-info h1 {
+    margin: 0 0 var(--space-16) 0;
+    font-size: var(--font-size-3xl);
+}
+
+.detail-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+}
+
+.bid-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+}
+
+.bid-panel h3 {
+    margin: 0 0 var(--space-16) 0;
+    font-size: var(--font-size-xl);
+}
+
+.bid-history {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.bid-item {
+    padding: var(--space-12) 0;
+    border-bottom: 1px solid var(--color-card-border-inner);
+    display: flex;
+    justify-content: space-between;
+}
+
+.bid-item:last-child {
+    border-bottom: none;
+}
+
+.seller-info {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+}
+
+.seller-info h3 {
+    margin: 0 0 var(--space-16) 0;
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--space-32);
+    color: var(--color-text-secondary);
+}
+
+.empty-state-icon {
+    font-size: 60px;
+    margin-bottom: var(--space-16);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-container {
+        flex-wrap: wrap;
+    }
+    
+    .nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-around;
+        padding-top: var(--space-16);
+        border-top: 1px solid var(--color-card-border);
+    }
+    
+    .detail-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-tabs {
+        flex-wrap: nowrap;
+    }
+    
+    .filter-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .auction-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">🔨 AshuBid</div>
+            
+            <nav class="nav">
+                <a class="nav-link active" data-page="home">Home</a>
+                <a class="nav-link" data-page="auctions">Auctions</a>
+                <a class="nav-link" data-page="my-bids">My Bids</a>
+                <a class="nav-link" data-page="sell">Sell</a>
+            </nav>
+            
+            <div class="location-selector">
+                <span>📍</span>
+                <select id="locationSelect">
+                    <option value="">All India</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                </select>
+            </div>
+            
+            <div class="user-actions">
+                <button class="btn btn-outline" id="loginBtn">Login</button>
+                <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="homePage" class="section">
+        <div class="hero">
+            <h1>Welcome to AshuBid</h1>
+            <p>India's Premier Online Auction Platform</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>15,234</h3>
+                <p>Active Auctions</p>
+            </div>
+            <div class="stat-card">
+                <h3>47,892</h3>
+                <p>Active Bidders</p>
+            </div>
+            <div class="stat-card">
+                <h3>₹230 Cr</h3>
+                <p>Weekly Volume</p>
+            </div>
+            <div class="stat-card">
+                <h3>99.7%</h3>
+                <p>Satisfaction Rate</p>
+            </div>
+        </div>
+        
+        <div class="category-tabs" id="categoryTabs">
+            <div class="category-tab active" data-category="all">All Items</div>
+            <div class="category-tab" data-category="Vehicles">Vehicles</div>
+            <div class="category-tab" data-category="Real Estate">Real Estate</div>
+            <div class="category-tab" data-category="Electronics">Electronics</div>
+            <div class="category-tab" data-category="Jewelry">Jewelry</div>
+            <div class="category-tab" data-category="Furniture">Furniture</div>
+            <div class="category-tab" data-category="Art">Art</div>
+        </div>
+        
+        <div class="auction-grid" id="homeAuctionGrid"></div>
+    </section>
+
+    <!-- Auctions Section -->
+    <section id="auctionsPage" class="section hidden">
+        <h2 style="margin-bottom: var(--space-24); font-size: var(--font-size-3xl);">Browse Auctions</h2>
+        
+        <div class="filters">
+            <h3>Search &amp; Filter</h3>
+            <div class="filter-group">
+                <div class="form-group">
+                    <label>Search</label>
+                    <input type="text" id="searchInput" placeholder="Search auctions...">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <optgroup label="Real Estate">
+                            <option value="Land">Land</option>
+                            <option value="Residential">Residential</option>
+                            <option value="Commercial">Commercial</option>
+                        </optgroup>
+                        <optgroup label="Vehicles">
+                            <option value="Cars">Cars</option>
+                            <option value="Bikes">Bikes</option>
+                            <option value="Trucks">Trucks</option>
+                            <option value="Buses">Buses</option>
+                            <option value="Autos">Autos</option>
+                        </optgroup>
+                        <optgroup label="Electronics">
+                            <option value="Computers">Computers</option>
+                            <option value="Appliances">Appliances</option>
+                        </optgroup>
+                        <option value="Jewelry">Jewelry &amp; Watches</option>
+                        <option value="Furniture">Furniture &amp; Home</option>
+                        <option value="Art">Art &amp; Collectibles</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <select id="locationFilter">
+                        <option value="">All Locations</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Jaipur">Jaipur</option>
+                        <option value="Surat">Surat</option>
+                        <option value="Lucknow">Lucknow</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Punjab">Punjab</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Max Price (₹)</label>
+                    <input type="number" id="priceFilter" placeholder="Max price">
+                </div>
+            </div>
+        </div>
+        
+        <div class="auction-grid" id="auctionsGrid"></div>
+    </section>
+
+    <!-- My Bids Section -->
+    <section id="myBidsPage" class="section hidden">
+        <h2 style="margin-bottom: var(--space-24); font-size: var(--font-size-3xl);">My Bids</h2>
+        
+        <div id="bidsTableContainer"></div>
+    </section>
+
+    <!-- Sell Section -->
+    <section id="sellPage" class="section hidden">
+        <h2 style="margin-bottom: var(--space-24); font-size: var(--font-size-3xl);">Create New Auction</h2>
+        
+        <div style="max-width: 600px; background: var(--color-surface); padding: var(--space-24); border-radius: var(--radius-lg); border: 1px solid var(--color-card-border);">
+            <form id="createAuctionForm">
+                <div class="form-group">
+                    <label>Title *</label>
+                    <input type="text" id="auctionTitle" required placeholder="e.g., iPhone 14 Pro Max">
+                </div>
+                
+                <div class="form-group">
+                    <label>Category *</label>
+                    <select id="auctionCategory" required>
+                        <option value="">Select category</option>
+                        <optgroup label="Real Estate">
+                            <option value="Land">Land</option>
+                            <option value="Residential">Residential</option>
+                            <option value="Commercial">Commercial</option>
+                        </optgroup>
+                        <optgroup label="Vehicles">
+                            <option value="Cars">Cars</option>
+                            <option value="Bikes">Bikes</option>
+                            <option value="Trucks">Trucks</option>
+                            <option value="Buses">Buses</option>
+                            <option value="Autos">Autos</option>
+                        </optgroup>
+                        <optgroup label="Electronics">
+                            <option value="Computers">Computers</option>
+                            <option value="Appliances">Appliances</option>
+                        </optgroup>
+                        <option value="Jewelry">Jewelry &amp; Watches</option>
+                        <option value="Furniture">Furniture &amp; Home</option>
+                        <option value="Art">Art &amp; Collectibles</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description *</label>
+                    <textarea id="auctionDescription" required rows="4" placeholder="Describe your item..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Starting Bid (₹) *</label>
+                    <input type="number" id="auctionStartingBid" required min="1" placeholder="e.g., 5000">
+                </div>
+                
+                <div class="form-group">
+                    <label>Location *</label>
+                    <select id="auctionLocation" required>
+                        <option value="">Select location</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Jaipur">Jaipur</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Shipping Type *</label>
+                    <select id="auctionShipping" required>
+                        <option value="">Select shipping type</option>
+                        <option value="Nationwide">Ships within India</option>
+                        <option value="Local Pickup">Local Pickup Only</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Auction Duration</label>
+                    <select id="auctionDuration">
+                        <option value="1d">1 Day</option>
+                        <option value="3d" selected>3 Days</option>
+                        <option value="5d">5 Days</option>
+                        <option value="7d">7 Days</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--space-16);">Create Auction</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Auction Detail Section -->
+    <section id="detailPage" class="section hidden">
+        <button class="btn btn-outline" id="backBtn" style="margin-bottom: var(--space-24);">← Back</button>
+        
+        <div class="detail-container" id="detailContainer"></div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <button class="modal-close" data-modal="loginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="loginEmail" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--space-16);">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: var(--space-16); color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" id="switchToSignup" style="color: var(--color-primary);">Sign up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign Up</h2>
+                <button class="modal-close" data-modal="signupModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="signupName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="signupEmail" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signupPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--space-16);">Sign Up</button>
+                </form>
+                <p style="text-align: center; margin-top: var(--space-16); color: var(--color-text-secondary);">
+                    Already have an account? <a href="#" id="switchToLogin" style="color: var(--color-primary);">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bid Confirmation Modal -->
+    <div id="bidModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Place Your Bid</h2>
+                <button class="modal-close" data-modal="bidModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="bidModalText" style="margin-bottom: var(--space-16); color: var(--color-text-secondary);"></p>
+                <div class="form-group">
+                    <label>Your Bid Amount (₹)</label>
+                    <input type="number" id="bidAmount" min="0" step="100" placeholder="Enter bid amount">
+                </div>
+                <div style="display: flex; gap: var(--space-12); margin-top: var(--space-24);">
+                    <button class="btn btn-outline" data-modal="bidModal" style="flex: 1;">Cancel</button>
+                    <button class="btn btn-primary" id="confirmBidBtn" style="flex: 1;">Confirm Bid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock Data - BidIndia Auctions
+        const auctions = [
+            {
+                id: 1,
+                title: "2 BHK Apartment",
+                category: "Residential",
+                location: "Bangalore",
+                currentBid: 4500000,
+                startingBid: 4200000,
+                bids: 23,
+                timeLeft: "2d 5h",
+                status: "hot",
+                shipping: "Local Pickup",
+                description: "Spacious 2 BHK apartment in prime Bangalore location. Well-maintained with modern amenities, covered parking, and 24/7 security.",
+                seller: "Property Ventures",
+                emoji: "🏢"
+            },
+            {
+                id: 2,
+                title: "Honda City 2019",
+                category: "Cars",
+                location: "Delhi",
+                currentBid: 650000,
+                startingBid: 600000,
+                bids: 18,
+                timeLeft: "1d 12h",
+                status: "hot",
+                shipping: "Local Pickup",
+                description: "Well-maintained Honda City 2019 model. Single owner, full service history, excellent condition with all original papers.",
+                seller: "Auto Dealership Delhi",
+                emoji: "🚗"
+            },
+            {
+                id: 3,
+                title: "Royal Enfield Bike",
+                category: "Bikes",
+                location: "Mumbai",
+                currentBid: 125000,
+                startingBid: 110000,
+                bids: 15,
+                timeLeft: "3d 8h",
+                status: "",
+                shipping: "Local Pickup",
+                description: "Classic Royal Enfield motorcycle in pristine condition. Recently serviced, new tires, and all documents clear.",
+                seller: "Bike Bazaar Mumbai",
+                emoji: "🏍️"
+            },
+            {
+                id: 4,
+                title: "5 Acres Agricultural Land",
+                category: "Land",
+                location: "Punjab",
+                currentBid: 2500000,
+                startingBid: 2200000,
+                bids: 12,
+                timeLeft: "5d 2h",
+                status: "",
+                shipping: "Local Pickup",
+                description: "Fertile agricultural land, 5 acres with water connection and road access. Perfect for farming or investment.",
+                seller: "Land Brokers Punjab",
+                emoji: "🌾"
+            },
+            {
+                id: 5,
+                title: "Tata Truck",
+                category: "Trucks",
+                location: "Hyderabad",
+                currentBid: 1200000,
+                startingBid: 1000000,
+                bids: 9,
+                timeLeft: "2d 18h",
+                status: "ending",
+                shipping: "Local Pickup",
+                description: "Heavy-duty Tata truck, well-maintained with regular servicing. Ideal for commercial transport business.",
+                seller: "Commercial Vehicles HYD",
+                emoji: "🚚"
+            },
+            {
+                id: 6,
+                title: "Commercial Shop",
+                category: "Commercial",
+                location: "Chennai",
+                currentBid: 3500000,
+                startingBid: 3200000,
+                bids: 14,
+                timeLeft: "4d 3h",
+                status: "",
+                shipping: "Local Pickup",
+                description: "Prime commercial shop space in busy Chennai market area. High footfall location, perfect for retail business.",
+                seller: "Property Masters Chennai",
+                emoji: "🏪"
+            },
+            {
+                id: 7,
+                title: "MacBook Pro",
+                category: "Computers",
+                location: "Pune",
+                currentBid: 185000,
+                startingBid: 170000,
+                bids: 21,
+                timeLeft: "1d 8h",
+                status: "hot",
+                shipping: "Nationwide",
+                description: "Latest MacBook Pro with M3 chip, 16GB RAM, 512GB SSD. Like new condition with original box and accessories.",
+                seller: "Tech Hub Pune",
+                emoji: "💻"
+            },
+            {
+                id: 8,
+                title: "Diamond Necklace",
+                category: "Jewelry",
+                location: "Kolkata",
+                currentBid: 385000,
+                startingBid: 350000,
+                bids: 17,
+                timeLeft: "3d 15h",
+                status: "",
+                shipping: "Nationwide",
+                description: "Exquisite diamond necklace with 18K gold setting. Certified diamonds with authenticity certificate included.",
+                seller: "Jewels of India",
+                emoji: "💎"
+            },
+            {
+                id: 9,
+                title: "Bajaj Auto",
+                category: "Autos",
+                location: "Lucknow",
+                currentBid: 520000,
+                startingBid: 480000,
+                bids: 11,
+                timeLeft: "2d 10h",
+                status: "",
+                shipping: "Local Pickup",
+                description: "Bajaj auto-rickshaw in excellent running condition. Commercial vehicle with valid permits and insurance.",
+                seller: "Auto Traders Lucknow",
+                emoji: "🛺"
+            },
+            {
+                id: 10,
+                title: "Marble Furniture",
+                category: "Furniture",
+                location: "Ahmedabad",
+                currentBid: 85000,
+                startingBid: 70000,
+                bids: 8,
+                timeLeft: "4d 6h",
+                status: "",
+                shipping: "Local Pickup",
+                description: "Premium marble dining table with 6 chairs. Handcrafted Italian marble with intricate design work.",
+                seller: "Marble Creations",
+                emoji: "🪑"
+            },
+            {
+                id: 11,
+                title: "Abstract Art",
+                category: "Art",
+                location: "Delhi",
+                currentBid: 145000,
+                startingBid: 120000,
+                bids: 13,
+                timeLeft: "5d 1h",
+                status: "",
+                shipping: "Nationwide",
+                description: "Original abstract painting by renowned Indian artist. Acrylic on canvas, 4x3 feet with certificate of authenticity.",
+                seller: "Art Gallery Delhi",
+                emoji: "🎨"
+            },
+            {
+                id: 12,
+                title: "Volvo Bus",
+                category: "Buses",
+                location: "Jaipur",
+                currentBid: 2800000,
+                startingBid: 2500000,
+                bids: 7,
+                timeLeft: "6d 4h",
+                status: "",
+                shipping: "Local Pickup",
+                description: "Luxury Volvo bus, 45-seater with AC. Well-maintained, perfect for tourist transport or charter services.",
+                seller: "Transport Solutions Jaipur",
+                emoji: "🚌"
+            }
+        ];
+
+        // State management
+        let currentPage = 'home';
+        let selectedCategory = 'all';
+        let selectedAuction = null;
+        let userBids = [];
+        let currentUser = null;
+
+        // Utility functions
+        function formatPrice(price) {
+            return '₹' + price.toLocaleString('en-IN');
+        }
+
+        function showAlert(message, type = 'success') {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <span>${type === 'success' ? '✓' : '✗'}</span>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function renderAuctionCard(auction) {
+            return `
+                <div class="auction-card" data-id="${auction.id}">
+                    <div class="auction-image">
+                        ${auction.emoji}
+                        ${auction.status ? `<div class="auction-badge badge-${auction.status}">${auction.status === 'hot' ? 'Hot' : 'Ending Soon'}</div>` : ''}
+                    </div>
+                    <div class="auction-content">
+                        <h3 class="auction-title">${auction.title}</h3>
+                        <div class="auction-location">📍 ${auction.location}</div>
+                        <div class="auction-price">${formatPrice(auction.currentBid)}</div>
+                        <div class="auction-meta">
+                            <span>${auction.bids} bids</span>
+                            <span>⏱️ ${auction.timeLeft}</span>
+                        </div>
+                        <div class="auction-shipping">${auction.shipping}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAuctions(container, items) {
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>No auctions found</h3>
+                        <p>Try adjusting your filters</p>
+                    </div>
+                `;
+                return;
+            }
+            container.innerHTML = items.map(renderAuctionCard).join('');
+        }
+
+        function filterAuctions() {
+            let filtered = [...auctions];
+            
+            // Search
+            const search = document.getElementById('searchInput')?.value.toLowerCase();
+            if (search) {
+                filtered = filtered.filter(a => 
+                    a.title.toLowerCase().includes(search) ||
+                    a.description.toLowerCase().includes(search)
+                );
+            }
+            
+            // Category
+            const category = document.getElementById('categoryFilter')?.value;
+            if (category) {
+                // Check if it's a direct category match
+                filtered = filtered.filter(a => a.category === category);
+            }
+            
+            // Location
+            const location = document.getElementById('locationFilter')?.value;
+            if (location) {
+                filtered = filtered.filter(a => a.location === location);
+            }
+            
+            // Price
+            const maxPrice = document.getElementById('priceFilter')?.value;
+            if (maxPrice) {
+                filtered = filtered.filter(a => a.currentBid <= parseInt(maxPrice));
+            }
+            
+            return filtered;
+        }
+
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected page
+            const page = document.getElementById(pageName + 'Page');
+            if (page) {
+                page.classList.remove('hidden');
+                currentPage = pageName;
+            }
+            
+            // Update nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageName) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Initialize page content
+            if (pageName === 'home') {
+                renderHome();
+            } else if (pageName === 'auctions') {
+                renderAuctionsPage();
+            } else if (pageName === 'my-bids') {
+                renderMyBids();
+            }
+        }
+
+        function renderHome() {
+            const container = document.getElementById('homeAuctionGrid');
+            let items = auctions;
+            
+            if (selectedCategory !== 'all') {
+                // Map category tabs to actual categories
+                const categoryMap = {
+                    'Vehicles': ['Cars', 'Bikes', 'Trucks', 'Buses', 'Autos'],
+                    'Real Estate': ['Land', 'Residential', 'Commercial'],
+                    'Electronics': ['Computers', 'Appliances'],
+                    'Jewelry': ['Jewelry'],
+                    'Furniture': ['Furniture'],
+                    'Art': ['Art']
+                };
+                
+                if (categoryMap[selectedCategory]) {
+                    items = auctions.filter(a => categoryMap[selectedCategory].includes(a.category));
+                } else {
+                    items = auctions.filter(a => a.category === selectedCategory);
+                }
+            }
+            
+            renderAuctions(container, items);
+        }
+
+        function renderAuctionsPage() {
+            const container = document.getElementById('auctionsGrid');
+            const filtered = filterAuctions();
+            renderAuctions(container, filtered);
+        }
+
+        function renderMyBids() {
+            const container = document.getElementById('bidsTableContainer');
+            
+            if (userBids.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📋</div>
+                        <h3>No bids yet</h3>
+                        <p>Start bidding on auctions to see your history here</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const tableHTML = `
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Auction</th>
+                                <th>Your Bid</th>
+                                <th>Current Bid</th>
+                                <th>Status</th>
+                                <th>Time Left</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${userBids.map(bid => {
+                                const auction = auctions.find(a => a.id === bid.auctionId);
+                                const isWinning = bid.amount >= auction.currentBid;
+                                return `
+                                    <tr>
+                                        <td>${auction.title}</td>
+                                        <td>${formatPrice(bid.amount)}</td>
+                                        <td>${formatPrice(auction.currentBid)}</td>
+                                        <td>
+                                            <span class="status ${isWinning ? 'status--success' : 'status--error'}">
+                                                ${isWinning ? 'Winning' : 'Outbid'}
+                                            </span>
+                                        </td>
+                                        <td>${auction.timeLeft}</td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            container.innerHTML = tableHTML;
+        }
+
+        function showAuctionDetail(auctionId) {
+            const auction = auctions.find(a => a.id === auctionId);
+            if (!auction) return;
+            
+            selectedAuction = auction;
+            
+            const bidHistory = [
+                { bidder: 'User***23', amount: auction.currentBid, time: '2 mins ago' },
+                { bidder: 'Bid***89', amount: auction.currentBid - 500, time: '15 mins ago' },
+                { bidder: 'Pro***45', amount: auction.currentBid - 1000, time: '1 hour ago' },
+            ];
+            
+            const detailHTML = `
+                <div class="detail-main">
+                    <div class="detail-image">${auction.emoji}</div>
+                    <div class="detail-info">
+                        <h1>${auction.title}</h1>
+                        <div style="display: flex; gap: var(--space-16); margin-bottom: var(--space-16); color: var(--color-text-secondary);">
+                            <span>📍 ${auction.location}</span>
+                            <span>📦 ${auction.shipping}</span>
+                            <span>🏷️ ${auction.category}</span>
+                        </div>
+                        <h3 style="margin-top: var(--space-24); margin-bottom: var(--space-12);">Description</h3>
+                        <p style="color: var(--color-text-secondary); line-height: 1.6;">${auction.description}</p>
+                        <div style="margin-top: var(--space-24); padding: var(--space-16); background: var(--color-bg-1); border-radius: var(--radius-base);">
+                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4);">Starting Bid</div>
+                            <div style="font-size: var(--font-size-lg);">${formatPrice(auction.startingBid)}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-sidebar">
+                    <div class="bid-panel">
+                        <h3>Current Bid</h3>
+                        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: var(--space-16);">
+                            ${formatPrice(auction.currentBid)}
+                        </div>
+                        <div style="display: flex; gap: var(--space-12); margin-bottom: var(--space-16); font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                            <span>${auction.bids} bids</span>
+                            <span>⏱️ ${auction.timeLeft} left</span>
+                        </div>
+                        <button class="btn btn-gold" id="placeBidBtn" style="width: 100%;">Place Bid</button>
+                    </div>
+                    <div class="bid-panel">
+                        <h3>Bid History</h3>
+                        <div class="bid-history">
+                            ${bidHistory.map(bid => `
+                                <div class="bid-item">
+                                    <div>
+                                        <div style="font-weight: var(--font-weight-medium);">${bid.bidder}</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">${bid.time}</div>
+                                    </div>
+                                    <div style="font-weight: var(--font-weight-bold); color: var(--color-primary);">
+                                        ${formatPrice(bid.amount)}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="seller-info">
+                        <h3>Seller Information</h3>
+                        <div style="margin-top: var(--space-16);">
+                            <div style="font-weight: var(--font-weight-medium); margin-bottom: var(--space-8);">${auction.seller}</div>
+                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">📍 ${auction.location}</div>
+                            <div style="margin-top: var(--space-12);">
+                                <span class="status status--success">Verified Seller</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('detailContainer').innerHTML = detailHTML;
+            showPage('detail');
+            
+            // Add bid button listener
+            document.getElementById('placeBidBtn').addEventListener('click', openBidModal);
+        }
+
+        function openBidModal() {
+            if (!selectedAuction) return;
+            
+            document.getElementById('bidModalText').textContent = 
+                `Current bid is ${formatPrice(selectedAuction.currentBid)}. Enter your bid amount (must be higher than current bid).`;
+            document.getElementById('bidAmount').value = '';
+            document.getElementById('bidAmount').min = selectedAuction.currentBid + 100;
+            document.getElementById('bidModal').classList.remove('hidden');
+        }
+
+        function placeBid() {
+            const amount = parseInt(document.getElementById('bidAmount').value);
+            
+            if (!amount || amount <= selectedAuction.currentBid) {
+                showAlert('Bid must be higher than current bid', 'error');
+                return;
+            }
+            
+            // Update auction
+            selectedAuction.currentBid = amount;
+            selectedAuction.bids += 1;
+            
+            // Add to user bids
+            const existingBidIndex = userBids.findIndex(b => b.auctionId === selectedAuction.id);
+            if (existingBidIndex >= 0) {
+                userBids[existingBidIndex].amount = amount;
+            } else {
+                userBids.push({
+                    auctionId: selectedAuction.id,
+                    amount: amount,
+                    timestamp: new Date()
+                });
+            }
+            
+            // Close modal and show success
+            document.getElementById('bidModal').classList.add('hidden');
+            showAlert('Bid placed successfully!', 'success');
+            
+            // Refresh detail view
+            showAuctionDetail(selectedAuction.id);
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = link.getAttribute('data-page');
+                    showPage(page);
+                });
+            });
+            
+            // Category tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    selectedCategory = tab.getAttribute('data-category');
+                    renderHome();
+                });
+            });
+            
+            // Auction cards
+            document.addEventListener('click', (e) => {
+                const card = e.target.closest('.auction-card');
+                if (card) {
+                    const id = parseInt(card.getAttribute('data-id'));
+                    showAuctionDetail(id);
+                }
+            });
+            
+            // Back button
+            document.getElementById('backBtn').addEventListener('click', () => {
+                showPage('auctions');
+            });
+            
+            // Filters
+            ['searchInput', 'categoryFilter', 'locationFilter', 'priceFilter'].forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', renderAuctionsPage);
+                }
+            });
+            
+            // Location selector
+            document.getElementById('locationSelect').addEventListener('change', (e) => {
+                const location = e.target.value;
+                if (location) {
+                    showAlert(`Showing auctions in ${location}`, 'success');
+                }
+            });
+            
+            // Modal controls
+            document.querySelectorAll('.modal-close, [data-modal]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const modalId = btn.getAttribute('data-modal');
+                    if (modalId) {
+                        document.getElementById(modalId).classList.add('hidden');
+                    }
+                });
+            });
+            
+            // Login/Signup
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                document.getElementById('loginModal').classList.remove('hidden');
+            });
+            
+            document.getElementById('signupBtn').addEventListener('click', () => {
+                document.getElementById('signupModal').classList.remove('hidden');
+            });
+            
+            document.getElementById('switchToSignup').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('loginModal').classList.add('hidden');
+                document.getElementById('signupModal').classList.remove('hidden');
+            });
+            
+            document.getElementById('switchToLogin').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('signupModal').classList.add('hidden');
+                document.getElementById('loginModal').classList.remove('hidden');
+            });
+            
+            // Forms
+            document.getElementById('loginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                currentUser = { email };
+                document.getElementById('loginModal').classList.add('hidden');
+                showAlert('Login successful!', 'success');
+            });
+            
+            document.getElementById('signupForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    showAlert('Passwords do not match', 'error');
+                    return;
+                }
+                
+                const email = document.getElementById('signupEmail').value;
+                const name = document.getElementById('signupName').value;
+                currentUser = { email, name };
+                document.getElementById('signupModal').classList.add('hidden');
+                showAlert('Account created successfully!', 'success');
+            });
+            
+            document.getElementById('createAuctionForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const newAuction = {
+                    id: auctions.length + 1,
+                    title: document.getElementById('auctionTitle').value,
+                    category: document.getElementById('auctionCategory').value,
+                    location: document.getElementById('auctionLocation').value,
+                    currentBid: parseInt(document.getElementById('auctionStartingBid').value),
+                    startingBid: parseInt(document.getElementById('auctionStartingBid').value),
+                    bids: 0,
+                    timeLeft: document.getElementById('auctionDuration').value.replace('d', 'd 0h'),
+                    status: '',
+                    shipping: document.getElementById('auctionShipping').value,
+                    description: document.getElementById('auctionDescription').value,
+                    seller: currentUser ? currentUser.name : 'Anonymous',
+                    emoji: '📦'
+                };
+                
+                auctions.push(newAuction);
+                e.target.reset();
+                showAlert('Auction created successfully!', 'success');
+                showPage('auctions');
+            });
+            
+            // Bid confirmation
+            document.getElementById('confirmBidBtn').addEventListener('click', placeBid);
+            
+            // Close modals on background click
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.add('hidden');
+                    }
+                });
+            });
+            
+            // Initialize home page
+            renderHome();
+        });
+    </script>
+</body>
+</html>
